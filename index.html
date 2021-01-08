@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>KAS SAUKI SIMULATOR 2K21</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+<audio id="winsound">
+    <source src="assets/victory.mp3"/>
+</audio>
+<audio id="gosound">
+    <source src="assets/game_over.mp3"/>
+</audio>
+<audio id="bgm" loop>
+    <source src="assets/bgm.mp3"/>
+</audio>
+<div id="loading"></div>
+<div id="instructions" class="modal">
+    <div class="modal-content">
+        <p>HOW 2 PLAY</p>
+        <img id="ins" src="assets/instructions.jpg" alt="it's the fucking instructions">
+        <button id="start">i am ready to become a ninja master
+            <br><br><span class="click">(CLICK TO BEGIN)</span></button>
+    </div>
+</div>
+<div id="game_over" class="modal">
+    <div class="modal-content">
+        <p>SWOOPY GOT FED UP WITH YOUR SHIT</p>
+        <img id="go" src="assets/game_over.png" alt="game over boyo">
+        <button id="try">i still want to fuck up my static's day
+            <br><br><span class="click">(CLICK TO TRY AGAIN)</span></button>
+    </div>
+</div>
+<div id="victory" class="modal">
+    <div class="modal-content">
+        <p>CONGRATULATIONS, YOU ARE A NINJA LEGEND</p>
+        <img id="vic" src="assets/victory.png" alt="u won">
+        <button id="playagain">wipe the fucking raid
+            <br><br><span class="click">(CLICK TO PLAY AGAIN)</span></button>
+    </div>
+</div>
+<div id="game">
+    <div id="score"></div>
+    <div id="lives"></div>
+    <div id="kas"></div>
+    <div id="swoopy"></div>
+    <div id="dd"></div>
+</div>
+<script src="js/game.js"></script>
+</body>
+</html>

@@ -1,0 +1,281 @@
+body {
+    background-color: black;
+    font-family: "Comic Sans MS", sans-serif;
+}
+
+#loading {
+    display: block;
+    width: 400px;
+    height: 428px;
+    border: 1px solid black;
+    top: 30%;
+    left: 43%;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    background-image: url(../assets/loading.png);
+    background-size: 400px 430px;
+    animation-name: spin;
+    animation-duration: 3000ms;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+#game {
+    width: 800px;
+    height: 430px;
+    border: 1px solid black;
+    z-index: 1;
+    top: 50%;
+    left: 50%;
+    display: none;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    background-image: url(../assets/bg.png);
+    background-size: 800px 430px;
+}
+
+#kas {
+    width: 125px;
+    height: 125px;
+    background-image: url(../assets/kas_alive.png);
+    background-size: 125px 125px;
+    position: relative;
+    left: 140px;
+    top: 240px;
+}
+
+.jump {
+    animation: jump 0.4s linear;
+}
+
+@keyframes jump {
+    0% {
+        top: 240px;
+    }
+
+    10% {
+        top: 200px;
+    }
+
+    20% {
+        top: 165px;
+    }
+
+    30% {
+        top: 130px;
+    }
+
+    40% {
+        top: 105px;
+    }
+
+    50% {
+        top: 80px;
+    }
+
+    60% {
+        top: 105px;
+    }
+
+    70% {
+        top: 130px;
+    }
+
+    80% {
+        top: 165px;
+    }
+
+    90% {
+        top: 200px;
+    }
+
+    100% {
+        top: 240px;
+    }
+}
+
+#swoopy {
+    width: 80px;
+    height: 80px;
+    position: relative;
+    left: 720px;
+    top: 165px;
+    background-image: url(../assets/swoopy.png);
+    background-size: 80px 80px;
+}
+
+.block {
+    animation: block 1.2s infinite linear;
+}
+
+.block4 {
+    animation: block 0.6s infinite linear;
+}
+
+.block5 {
+    animation: block 0.1s infinite linear;
+}
+
+@keyframes block {
+    0% {
+        left: 720px;
+    }
+
+    100% {
+        left: -10px;
+    }
+}
+
+#score {
+    width: 140px;
+    height: 30px;
+    left: 10px;
+    top: 10px;
+    background-color: white;
+    position: relative;
+    font-size: 17px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+#lives {
+    width: 210px;
+    height: 30px;
+    left: 10px;
+    top: 20px;
+    background-color: white;
+    position: relative;
+    font-size: 17px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+#instructions {
+    display: none;
+    position: absolute;
+    transform: translate(-50%, -50%); /* this is the stupidest shit imaginable */
+    z-index: 3;
+    top: 50%;
+    left: 50%;
+    text-align: center;
+    width: 1000px;
+    height: 500px;
+    overflow: auto;
+    background-color: yellowgreen;
+}
+
+#start {
+    height: 105px;
+    width: 300px;
+    margin-top: 25px;
+    font-size: large;
+    font-weight: bolder;
+}
+
+#ins {
+    height: 270px;
+    width: 1000px;
+}
+
+.click {
+    font-family: "Book Antiqua", serif;
+}
+
+#dd {
+    width: 40px;
+    height: 40px;
+    position: relative;
+    left: 760px;
+    top: -45px;
+    background-image: url(../assets/dmgdown.png);
+    background-size: 40px 40px;
+
+}
+
+.block0 {
+    animation: block1 4.2s infinite linear
+}
+
+.block1 {
+    animation: block1 3.2s infinite linear;
+}
+
+.block2 {
+    animation: block1 1.6s infinite linear;
+}
+
+.block3 {
+    animation: block1 0.6s infinite linear;
+}
+
+@keyframes block1 {
+    0% {
+        left: 760px;
+    }
+
+    100% {
+        left: 0;
+    }
+}
+
+#game_over {
+    display: none;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    z-index: 3;
+    top: 50%;
+    left: 50%;
+    text-align: center;
+    width: 1000px;
+    height: 500px;
+    overflow: auto;
+    background-color: yellowgreen;
+}
+
+#go {
+    height: 350px;
+    width: 1000px;
+}
+
+#try {
+    height: 80px;
+    width: 400px;
+    font-size: large;
+    font-weight: bolder;
+}
+
+#victory {
+    display: none;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    z-index: 3;
+    top: 50%;
+    left: 50%;
+    text-align: center;
+    width: 1000px;
+    height: 500px;
+    overflow: auto;
+    background-color: yellowgreen;
+}
+
+#vic {
+    height: 350px;
+    width: 1000px;
+}
+
+#playagain {
+    height: 80px;
+    width: 400px;
+    font-size: large;
+    font-weight: bolder;
+}
