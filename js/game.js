@@ -3,6 +3,7 @@ const swoopy = document.getElementById('swoopy');
 const dd = document.getElementById('dd');
 let score, lives, gameInterval, gameInterval2;
 var rngblock, pick;
+var isJumping = false;
 
 window.onload = function () {
 
@@ -65,13 +66,24 @@ function playgame() {
 }
 
 function jump() {
+    if (!kas.classList.contains("jump") && !isJumping) {
+        kas.classList.add("jump");
+        isJumping = true;
+        setTimeout(function () {
+            kas.classList.remove("jump");
+            isJumping = false;
+        }, 400)
+    }
+}
+
+/*function jump() {
     if (!kas.classList.contains("jump")) {
     kas.classList.add("jump");
     }
     setTimeout(function () {
         kas.classList.remove("jump");
     }, 400)
-}
+}*/
 
 function game_over() {
     document.getElementById('gosound').loop = false;
