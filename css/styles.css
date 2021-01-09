@@ -119,11 +119,11 @@ body {
 }
 
 .block4 {
-    animation: block 0.6s infinite linear;
+    animation: block 0.8s infinite linear;
 }
 
 .block5 {
-    animation: block 0.1s infinite linear;
+    animation: block 0.5s infinite linear;
 }
 
 @keyframes block {
@@ -203,7 +203,7 @@ body {
 }
 
 .block0 {
-    animation: block1 4.2s infinite linear
+    animation: block1 3.8s infinite linear
 }
 
 .block1 {
@@ -215,7 +215,7 @@ body {
 }
 
 .block3 {
-    animation: block1 0.6s infinite linear;
+    animation: block1 0.9s infinite linear;
 }
 
 @keyframes block1 {
