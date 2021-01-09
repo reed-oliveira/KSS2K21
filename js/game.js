@@ -2,8 +2,42 @@ const kas = document.getElementById('kas');
 const swoopy = document.getElementById('swoopy');
 const dd = document.getElementById('dd');
 let score, lives, gameInterval, gameInterval2;
-
 var rngblock, pick;
+
+window.onload = function () {
+
+    setTimeout(function () {
+        document.getElementById('loading').style.display = "none";
+        document.getElementById('instructions').style.display = "block";
+        document.getElementById('game').style.display = "block";
+    }, 3500); // CHANGE TO 3500 WHEN DONE <--------------------------------------
+
+    document.getElementById('start').onclick = function () { // start button
+        gameInterval = setInterval(endGame, 10)
+        gameInterval2 = setInterval(scoreCheck, 10)
+        document.getElementById('instructions').style.display = "none";
+        playgame();
+    }
+
+    document.getElementById('try').onclick = function () { // retry button
+        gameInterval = setInterval(endGame, 10)
+        document.getElementById('game_over').style.display = "none";
+        document.getElementById('game').style.display = "block";
+        document.getElementById('gosound').pause();
+        document.getElementById('gosound').currentTime = 0;
+        playgame();
+    }
+
+    document.getElementById('playagain').onclick = function () { // replay button
+        gameInterval2 = setInterval(scoreCheck, 10)
+        document.getElementById('victory').style.display = "none";
+        document.getElementById('game').style.display = "block";
+        document.getElementById('winsound').pause();
+        document.getElementById('winsound').currentTime = 0;
+        playgame();
+
+    }
+}
 
 document.getElementById('winsound').loop = false;
 document.getElementById('gosound').loop = false;
@@ -14,10 +48,12 @@ function aniPicker() {
 } // This picks the animation for the damage down
 
 function playgame() {
+    document.getElementById('bgm').volume = 0.03;
+    document.getElementById('bgm').play();
     swoopy.classList.add("block");
     aniPicker();
     dd.classList.add(pick);
-    document.addEventListener("keyup", function (event) {
+    document.addEventListener("keydown", function (event) {
         if (event.code === 'Space') {
             jump();
         }
@@ -29,8 +65,8 @@ function playgame() {
 }
 
 function jump() {
-    if (kas.classList.length != "jump") { // this is meant to prevent spam clicking but poopoo
-        kas.classList.add("jump");
+    if (!kas.classList.contains("jump")) {
+    kas.classList.add("jump");
     }
     setTimeout(function () {
         kas.classList.remove("jump");
@@ -38,6 +74,9 @@ function jump() {
 }
 
 function game_over() {
+    document.getElementById('gosound').loop = false;
+    document.getElementById('gosound').volume = 0.03;
+    document.getElementById('gosound').play();
     document.getElementById('bgm').pause();
     document.getElementById('bgm').currentTime = 0;
     swoopy.classList.remove('block');
@@ -50,6 +89,9 @@ function game_over() {
 }
 
 function victory() {
+    document.getElementById('winsound').loop = false;
+    document.getElementById('winsound').volume = 0.03;
+    document.getElementById('winsound').play();
     document.getElementById('bgm').pause();
     document.getElementById('bgm').currentTime = 0;
     swoopy.classList.remove('block');
@@ -71,8 +113,6 @@ function endGame() {
         document.getElementById('lives').innerHTML = "Swoopy's Patience: " + lives + "%";
     }
     if (lives <= 0) {
-        document.getElementById("gosound").loop = false;
-        document.getElementById('gosound').play();
         game_over();
         clearInterval(gameInterval);
     }
@@ -112,47 +152,7 @@ function scoreCheck() {
     }
 
     if (score <= 0) {
-        document.getElementById('winsound').loop = false;
-        document.getElementById('winsound').play();
         victory();
         clearInterval(gameInterval2);
     }
-}
-
-window.onload = function () {
-
-    setTimeout(function () {
-        document.getElementById('loading').style.display = "none";
-        document.getElementById('instructions').style.display = "block";
-        document.getElementById('game').style.display = "block";
-    }, 3500); // CHANGE TO 3500 WHEN DONE <------------------------------------------------------------------------
-
-    document.getElementById('start').onclick = function () { // start button
-        gameInterval = setInterval(endGame, 10)
-        gameInterval2 = setInterval(scoreCheck, 10)
-        document.getElementById('instructions').style.display = "none";
-        playgame();
-        document.getElementById('bgm').play();
-    }
-
-    document.getElementById('try').onclick = function () { // retry button
-        gameInterval = setInterval(endGame, 10)
-        document.getElementById('game_over').style.display = "none";
-        document.getElementById('game').style.display = "block";
-        document.getElementById('gosound').pause();
-        document.getElementById('gosound').currentTime = 0;
-        playgame();
-        document.getElementById('bgm').play();
-    }
-
-    document.getElementById('playagain').onclick = function () { // replay button
-        gameInterval2 = setInterval(scoreCheck, 10)
-        document.getElementById('victory').style.display = "none";
-        document.getElementById('game').style.display = "block";
-        document.getElementById('winsound').pause();
-        document.getElementById('winsound').currentTime = 0;
-        playgame();
-        document.getElementById('bgm').play();
-    }
-
 }
