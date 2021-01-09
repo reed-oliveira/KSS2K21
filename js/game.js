@@ -4,6 +4,7 @@ const dd = document.getElementById('dd');
 let score, lives, gameInterval, gameInterval2;
 var rngblock, pick;
 var isJumping = false;
+var isPressed = false;
 
 window.onload = function () {
 
@@ -22,6 +23,7 @@ window.onload = function () {
 
     document.getElementById('try').onclick = function () { // retry button
         gameInterval = setInterval(endGame, 10)
+        gameInterval2 = setInterval(scoreCheck, 10)
         document.getElementById('game_over').style.display = "none";
         document.getElementById('game').style.display = "block";
         document.getElementById('gosound').pause();
@@ -30,6 +32,7 @@ window.onload = function () {
     }
 
     document.getElementById('playagain').onclick = function () { // replay button
+        gameInterval = setInterval(endGame, 10)
         gameInterval2 = setInterval(scoreCheck, 10)
         document.getElementById('victory').style.display = "none";
         document.getElementById('game').style.display = "block";
@@ -57,6 +60,12 @@ function playgame() {
     document.addEventListener("keydown", function (event) {
         if (event.code === 'Space') {
             jump();
+            if (!isPressed) {
+                isPressed = true;
+                window.addEventListener('keyup', function () {
+                    isPressed = false;
+                });
+            }
         }
     })
     score = 100;
@@ -76,26 +85,17 @@ function jump() {
     }
 }
 
-/*function jump() {
-    if (!kas.classList.contains("jump")) {
-    kas.classList.add("jump");
-    }
-    setTimeout(function () {
-        kas.classList.remove("jump");
-    }, 400)
-}*/
-
 function game_over() {
     document.getElementById('gosound').loop = false;
     document.getElementById('gosound').volume = 0.03;
     document.getElementById('gosound').play();
     document.getElementById('bgm').pause();
     document.getElementById('bgm').currentTime = 0;
-    swoopy.classList.remove('block');
-    swoopy.classList.remove('block4');
-    swoopy.classList.remove('block5');
+    swoopy.className = "";
+    dd.className = "";
     kas.classList.remove('jump');
-    dd.classList.length = 0;
+    clearInterval(endGame);
+    clearInterval(scoreCheck);
     document.getElementById('game').style.display = "none";
     document.getElementById('game_over').style.display = "block";
 }
@@ -106,11 +106,11 @@ function victory() {
     document.getElementById('winsound').play();
     document.getElementById('bgm').pause();
     document.getElementById('bgm').currentTime = 0;
-    swoopy.classList.remove('block');
-    swoopy.classList.remove('block4');
-    swoopy.classList.remove('block5');
+    swoopy.className = "";
+    dd.className = "";
     kas.classList.remove('jump');
-    dd.classList.length = 0;
+    clearInterval(endGame);
+    clearInterval(scoreCheck);
     document.getElementById('game').style.display = "none";
     document.getElementById('victory').style.display = "block";
 }
