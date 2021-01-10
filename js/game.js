@@ -2,11 +2,17 @@ const kas = document.getElementById('kas');
 const swoopy = document.getElementById('swoopy');
 const dd = document.getElementById('dd');
 let score, lives, gameInterval, gameInterval2;
-var rngblock, pick;
-var isJumping = false;
-var isPressed = false;
+let rngblock, pick;
+let isJumping = false;
+let isPressed = false;
 
 window.onload = function () {
+
+    setInterval(function() {
+
+        console.log("swoopy: " + swoopy.className , "DD: " + dd.className)
+
+    },1000)
 
     setTimeout(function () {
         document.getElementById('loading').style.display = "none";
@@ -15,15 +21,11 @@ window.onload = function () {
     }, 3500); // CHANGE TO 3500 WHEN DONE <--------------------------------------
 
     document.getElementById('start').onclick = function () { // start button
-        gameInterval = setInterval(endGame, 10)
-        gameInterval2 = setInterval(scoreCheck, 10)
         document.getElementById('instructions').style.display = "none";
         playgame();
     }
 
     document.getElementById('try').onclick = function () { // retry button
-        gameInterval = setInterval(endGame, 10)
-        gameInterval2 = setInterval(scoreCheck, 10)
         document.getElementById('game_over').style.display = "none";
         document.getElementById('game').style.display = "block";
         document.getElementById('gosound').pause();
@@ -32,19 +34,13 @@ window.onload = function () {
     }
 
     document.getElementById('playagain').onclick = function () { // replay button
-        gameInterval = setInterval(endGame, 10)
-        gameInterval2 = setInterval(scoreCheck, 10)
         document.getElementById('victory').style.display = "none";
         document.getElementById('game').style.display = "block";
         document.getElementById('winsound').pause();
         document.getElementById('winsound').currentTime = 0;
         playgame();
-
     }
 }
-
-document.getElementById('winsound').loop = false;
-document.getElementById('gosound').loop = false;
 
 function aniPicker() {
     rngblock = (Math.floor(Math.random() * 4));
@@ -52,6 +48,8 @@ function aniPicker() {
 } // This picks the animation for the damage down
 
 function playgame() {
+    gameInterval = setInterval(endGame, 10)
+    gameInterval2 = setInterval(scoreCheck, 10)
     document.getElementById('bgm').volume = 0.03;
     document.getElementById('bgm').play();
     swoopy.classList.add("block");
@@ -72,6 +70,7 @@ function playgame() {
     lives = 100;
     document.getElementById('lives').innerHTML = "Swoopy's Patience: " + lives + "%";
     document.getElementById('score').innerHTML = "Percentile: " + score + "%";
+
 }
 
 function jump() {
@@ -86,6 +85,8 @@ function jump() {
 }
 
 function game_over() {
+    clearInterval(gameInterval);
+    clearInterval(gameInterval2);
     document.getElementById('gosound').loop = false;
     document.getElementById('gosound').volume = 0.03;
     document.getElementById('gosound').play();
@@ -94,13 +95,13 @@ function game_over() {
     swoopy.className = "";
     dd.className = "";
     kas.classList.remove('jump');
-    clearInterval(endGame);
-    clearInterval(scoreCheck);
     document.getElementById('game').style.display = "none";
     document.getElementById('game_over').style.display = "block";
 }
 
 function victory() {
+    clearInterval(gameInterval);
+    clearInterval(gameInterval2);
     document.getElementById('winsound').loop = false;
     document.getElementById('winsound').volume = 0.03;
     document.getElementById('winsound').play();
@@ -109,8 +110,6 @@ function victory() {
     swoopy.className = "";
     dd.className = "";
     kas.classList.remove('jump');
-    clearInterval(endGame);
-    clearInterval(scoreCheck);
     document.getElementById('game').style.display = "none";
     document.getElementById('victory').style.display = "block";
 }
@@ -124,9 +123,9 @@ function endGame() {
         lives = lives - 2;
         document.getElementById('lives').innerHTML = "Swoopy's Patience: " + lives + "%";
     }
+
     if (lives <= 0) {
         game_over();
-        clearInterval(gameInterval);
     }
 }
 
@@ -134,37 +133,35 @@ function scoreCheck() {
 
     let kasTop = parseInt(window.getComputedStyle(kas).getPropertyValue("top")); // Kas vertical position
     let ddLeft = parseInt(window.getComputedStyle(dd).getPropertyValue('left')); // Damage Down horizontal position
+    let swoopyLeft = parseInt(window.getComputedStyle(swoopy).getPropertyValue('left')); // Swoopy horizontal position
 
     if (ddLeft < 245 && ddLeft > 135 && kasTop <= 175) { // collision detection
 
         dd.classList.remove("block" + rngblock);
 
         setTimeout(function () {
-            aniPicker()
+            aniPicker();
             dd.classList.add(pick);
-        }, 30)
+        }, 50)
 
         score = score - 5;
         document.getElementById('score').innerHTML = "Percentile: " + score + "%";
     }
 
-    if (score == 50) {
+    if (score <= 50 && score >= 26 && swoopyLeft < 0) {
         swoopy.classList.remove("block");
 
         setTimeout(function () {
             swoopy.classList.add("block4");
-        }, 30)
+        }, 50)
 
-    } else if (score == 25) {
+    } else if (score <= 25 && score >= 1 && swoopyLeft < 0) {
         swoopy.classList.remove("block4");
 
         setTimeout(function () {
             swoopy.classList.add("block5");
-        }, 30)
-    }
-
-    if (score <= 0) {
+        }, 50)
+    } else if (score === 0) {
         victory();
-        clearInterval(gameInterval2);
     }
 }
