@@ -7,7 +7,7 @@ let isJumping = false;
 let isPressed = false;
 
 window.onload = function () {
-    
+
     setTimeout(function () {
         document.getElementById('loading').style.display = "none";
         document.getElementById('instructions').style.display = "block";
