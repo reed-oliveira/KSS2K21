@@ -203,15 +203,15 @@ body {
 }
 
 .block0 {
-    animation: block1 3.8s infinite linear
+    animation: block1 2.1s infinite linear
 }
 
 .block1 {
-    animation: block1 3.2s infinite linear;
+    animation: block1 1.8s infinite linear;
 }
 
 .block2 {
-    animation: block1 1.6s infinite linear;
+    animation: block1 1.2s infinite linear;
 }
 
 .block3 {
