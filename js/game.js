@@ -146,21 +146,21 @@ function scoreCheck() {
 
         score = score - 5;
         document.getElementById('score').innerHTML = "Percentile: " + score + "%";
+    }
 
-        if (score <= 50 && score >= 26 && swoopyLeft < 0) {
-            swoopy.classList.remove("block");
+    if (score <= 50 && score >= 26 && swoopyLeft < 0) {
+        swoopy.classList.remove("block");
 
-            setTimeout(function () {
-                swoopy.classList.add("block4");
-            }, 50)
+        setTimeout(function () {
+            swoopy.classList.add("block4");
+        }, 50)
 
-        } else if (score <= 25 && score >= 1 && swoopyLeft < 0) {
-            swoopy.classList.remove("block4");
+    } else if (score <= 25 && score >= 1 && swoopyLeft < 0) {
+        swoopy.classList.remove("block4");
 
-            setTimeout(function () {
-                swoopy.classList.add("block5");
-            }, 50)
-        }
+        setTimeout(function () {
+            swoopy.classList.add("block5");
+        }, 50)
     }
 
     if (score === 0) {
