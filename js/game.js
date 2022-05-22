@@ -86,7 +86,7 @@ function jump() {
 function gameOff() {
 
     document.getElementById('bgm').pause();
-    document.getElementById('bgm').currentTime = 0;
+    //document.getElementById('bgm').currentTime = 0;
     swoopy.className = "";
     dd.className = "";
     kas.classList.remove('jump');
