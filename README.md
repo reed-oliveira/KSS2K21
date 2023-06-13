@@ -3,6 +3,6 @@
 
 hello and welcome
 
-this game is a parody based on real life events
+this game is a parody based on real life events, and also a small self-imposed exercise on layering timers
 
-open index.html on your browser of choice and enjoy :)
+open index.html on your browser of choice and enjoy, or go to https://reed-oliveira.github.io/KSS2K21/ :)
